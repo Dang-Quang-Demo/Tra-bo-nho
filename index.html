@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <title>Tràn bộ nhớ</title>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #ffdde1;
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+    }
+    .heart {
+        position: absolute;
+        color: red;
+        font-size: 24px;
+        animation: floatUp 3s linear infinite;
+    }
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100vh) scale(0.5);
+            opacity: 0;
+        }
+    }
+    .final-message {
+        margin-top: 20px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+
+  <h1>Mắm ơi anh muốn nói cho Mắm nghe nè</h1>
+  <button id="playButton" onclick="generateRandomNotifications()">Nhấm lẹ vào đây coi😤!!!</button>
+  <div class="final-message" id="finalMessage" onclick="redirectToNewPage()">
+    <p id="text1"></p>
+    <p id="text2"></p>
+  </div>
+  <audio id="audioPlayer" src="./TBN.mp3"></audio> 
+  <script>
+    const playButton = document.getElementById("playButton");
+    const audioPlayer = document.getElementById("audioPlayer");
+
+    playButton.addEventListener("click", function() {
+        audioPlayer.play();
+    });
+    // Floating hearts effect
+    function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            document.body.appendChild(heart);
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.bottom = '-10px';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+        setInterval(createHeart, 300);
+</script>
+
+<script src="./script.js"></script>
+</body>
+
+</html>
